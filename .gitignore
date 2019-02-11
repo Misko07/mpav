@@ -1,0 +1,9 @@
+*.pyc
+mpav/__pycache__/
+instance/
+dist/
+build/
+*.egg-info/
+mpav/.idea/
+.idea/
+

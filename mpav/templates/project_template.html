@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project description</title>
+    {% if project_name %}
+      <h1>Project: {{ project_name }} </h1>
+    {% else %}
+      <h2>Hi</h2>
+    {% endif %}
+</head>
+<body>
+{{ body }}
+{{ arguments }}
+</body>
+</html>
