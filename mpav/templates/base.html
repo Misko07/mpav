@@ -1,0 +1,18 @@
+<!doctype html>
+<title>{% block title %}{% endblock %} - mpav</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<nav>
+  <h1>mpav</h1>
+  <ul>
+    <li>Home</li>
+    <li>Projects</li>
+    <li>Research</li>
+    <li>Blog posts</li>
+  </ul>
+</nav>
+<section class="content">
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  {% block content %}{% endblock %}
+</section>
