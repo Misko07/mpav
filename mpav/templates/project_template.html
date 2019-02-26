@@ -1,16 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Project description</title>
-    {% if project_name %}
-      <h1>Project: {{ project_name }} </h1>
-    {% else %}
-      <h2>Hi</h2>
-    {% endif %}
-</head>
-<body>
-{{ body }}
-{{ arguments }}
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Project: {{ project['title'] }}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <article class="post">
+      <header>
+        <div>
+         <h1>{{ project['title'] }}</h1>
+        </div>
+          <div>
+              {{ project['ldesc'] }}
+          </div>
+      </header>
+      <p class="body">{{ project['sdesc'] }}</p>
+    </article>
+{%  endblock %}
+
+
