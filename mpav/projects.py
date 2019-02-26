@@ -32,10 +32,10 @@ def get_project(id_):
     return project
 
 
-@bp.route('/project/<int:id>', methods=('GET', 'POST'))
+@bp.route('/project/project-<int:id>', methods=('GET', 'POST'))
 def show(id):
     project = get_project(id)
 
-    return render_template('project_template.html', project=project)
+    return render_template('project.html', project=project)
 
 
