@@ -48,6 +48,9 @@ def init_db():
     with current_app.open_resource('schema.sql') as f:
         db.executescript(f.read().decode('utf8'))
 
+    with current_app.open_resource('schema_init.sql') as f:
+        db.executescript(f.read().decode('utf8'))
+
 
 # Define a command line command `init-db`
 @click.command('init-db')

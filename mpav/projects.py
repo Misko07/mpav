@@ -14,16 +14,15 @@ def get_projects():
 
     projects = db.execute(
         'SELECT id, title, sdesc'
-        ' FROM project'
+        ' FROM projects'
     ).fetchall()
-    print('num projects:', len(projects))
     return render_template('projects.html', projects=projects)
 
 
 def get_project(id_):
 
     project = get_db().execute(
-        'SELECT id, title, ldesc from project where id = ?', (id_,)
+        'SELECT id, title, ldesc from projects where id = ?', (id_,)
     ).fetchone()
 
     if project is None:

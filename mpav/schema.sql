@@ -1,15 +1,24 @@
-DROP TABLE IF EXISTS user;
-DROP TABLE IF EXISTS project;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS projects;
+DROP TABLE IF EXISTS blogs;
 
-CREATE TABLE user (
+CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     username TEXT UNIQUE NOT NULL,
     password TEXT NOT NULL
 );
 
-CREATE TABLE project (
+CREATE TABLE projects (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
+    category TEXT NOT NULL,
     sdesc TEXT NOT NULL,
     ldesc TEXT
+);
+
+CREATE TABLE blogs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    created DATE NOT NULL,
+    body TEXT
 );
