@@ -13,10 +13,10 @@ def get_blogs():
 
     db = get_db()
 
-    blogs_ = db.execute(
+    posts = db.execute(
         "SELECT * FROM blogs"
     ).fetchall()
 
-    print('len(blogs):', len(blogs_))
+    print('len(blogs):', len(posts))
 
-    return render_template(url_for("index.html", posts=blogs_))
+    return render_template("index.html", posts=posts)

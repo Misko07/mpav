@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS projects;
 DROP TABLE IF EXISTS blogs;
+DROP TABLE IF EXISTS papers;
 
 CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -21,4 +22,12 @@ CREATE TABLE blogs (
     title TEXT NOT NULL,
     created DATE NOT NULL,
     body TEXT
+);
+
+CREATE TABLE papers (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  ref_text TEXT NOT NULL,
+  category TEXT NOT NULL,
+  sdesc TEXT,
+  url TEXT
 );

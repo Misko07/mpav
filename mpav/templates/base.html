@@ -5,10 +5,9 @@
   <img class="header-img" height="50" width="50">
   <h1>mpav</h1>
   <ul>
-    <li>Home</li>
+      <li><a class="action" href="{{ url_for('blogs.get_blogs') }}">Home</a></li>
     <li><a class="action" href="{{ url_for('projects.get_projects') }}">Projects</a></li>
-    <li>Research</li>
-    <li>Blog posts</li>
+    <li><a class="action" href="{{ url_for('research.get_papers') }}">Research</a></li>
   </ul>
 </nav>
 <section class="content">

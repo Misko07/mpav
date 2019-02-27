@@ -45,4 +45,8 @@ def create_app(test_config=None):
     # associate the endpoint name 'index' with the / url, so that url_for('index') or url_for('blog.index') both work
     app.add_url_rule('/', endpoint='index')
 
+    # Register research blueprint
+    from . import research
+    app.register_blueprint(research.bp)
+
     return app
