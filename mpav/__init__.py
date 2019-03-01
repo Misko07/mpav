@@ -1,6 +1,6 @@
-import os
-
 from flask import Flask
+from . import db
+import os
 
 
 def create_app(test_config=None):
@@ -28,10 +28,10 @@ def create_app(test_config=None):
     # a simple page that says hello
     @app.route('/hello')
     def hello():
+        db.populate_db()
         return 'Hi there!'
 
     # Call the db initialisation code
-    from . import db
     db.init_app(app)
 
     # Register projects blueprint

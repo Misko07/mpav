@@ -1,4 +1,5 @@
 from mpav.db import get_db
+import os
 
 from flask import (
     g, render_template, request, session, url_for, Blueprint, Markup
@@ -17,7 +18,18 @@ def get_projects():
         'SELECT id, title, sdesc'
         ' FROM projects'
     ).fetchall()
-    return render_template('projects.html', projects=projects)
+
+    # Put projects in a new list which can be modified
+    # todo: Change this once a better way to populate the DB is created
+    projects2 = []
+    for project in projects:
+        project2 = dict(project)
+        sdesc = _get_markup(project2['title'])
+        if sdesc:
+            project2['sdesc'] = sdesc
+        projects2.append(project2)
+
+    return render_template('projects.html', projects=projects2)
 
 
 def get_project(id_):
@@ -30,18 +42,26 @@ def get_project(id_):
         abort(404, "Project id {0} does not exist".format(id_))
 
     # Convert project's description from markdown to html
-    project2 = {}
-    for key in project.keys():
-        project2[key] = project[key]
+    project2 = dict(project)
     project2['ldesc'] = Markup(markdown.markdown(project2['ldesc']))
 
     return project2
 
 
-@bp.route('/project/project-<int:id>', methods=('GET', 'POST'))
+@bp.route('/projects/project-<int:id>', methods=('GET', 'POST'))
 def show(id):
     project = get_project(id)
 
     return render_template('project.html', project=project)
 
 
+def _get_markup(project_name):
+
+    filepath = "mpav/projects/%s-short.md" % project_name
+
+    if os.path.isfile(filepath):
+        with open(filepath, "r") as file:
+            short_desc = Markup(markdown.markdown(file.read()))
+        print(short_desc)
+        return short_desc
+    return None

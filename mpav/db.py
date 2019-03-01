@@ -1,8 +1,9 @@
-import sqlite3
-
-import click
-from flask import current_app, g
 from flask.cli import with_appcontext
+from flask import current_app, g
+import sqlite3
+import click
+import json
+import os
 
 
 def get_db():
@@ -48,8 +49,8 @@ def init_db():
     with current_app.open_resource('schema.sql') as f:
         db.executescript(f.read().decode('utf8'))
 
-    with current_app.open_resource('schema_init.sql') as f:
-        db.executescript(f.read().decode('utf8'))
+    # todo test this
+    populate_db()
 
 
 # Define a command line command `init-db`
@@ -77,4 +78,59 @@ def init_app(app):
 
     # Add a new command that can be called with the flask command
     app.cli.add_command(init_db_command)
+
+
+def populate_db():
+
+    projects_json = "mpav/projects/projects.json"
+    if os.path.isfile(projects_json):
+        with open(projects_json, "r") as file:
+            project_list = json.load(file)
+    else:
+        raise FileNotFoundError("Missing projects.json file.")
+
+    # Get short and long description files
+    files = os.listdir("mpav/projects/")
+    mds_short = [file for file in files if file[-9:] == "-short.md"]
+    mds_long = [file for file in files if file[-8:] == "-long.md"]
+    print(mds_short)
+    print(mds_long)
+
+    # Add descriptions to projects
+    for project in project_list:
+        project['sdesc'] = ""
+        project['ldesc'] = ""
+
+        for md_short in mds_short:
+            if project['title'] in md_short:
+                with open("mpav/projects/%s" % md_short) as file:
+                    project['sdesc'] = file.read()
+
+        for md_long in mds_long:
+            if project['title'] in md_long:
+                with open("mpav/projects/%s" % md_long) as file:
+                    project['ldesc'] = file.read()
+
+    # Insert projects in db
+    db = get_db()
+    cur = db.cursor()
+    for project in project_list:
+        print(project)
+        cur.execute(
+            'INSERT INTO projects (title, category)'
+            ' VALUES (?, ?)', (
+                project['title'],
+                project['category']
+            )
+            # 'INSERT INTO projects (title, category, sdesc, ldesc, tools, period)'
+            # ' VALUES (?, ?, ?, ?, ?, ?)', (
+            #     project['title'],
+            #     project['category'],
+            #     project['sdesc'],
+            #     project['ldesc'],
+            #     project['tools'],
+            #     project['period']
+            # )
+        )
+        print(cur.lastrowid)
 

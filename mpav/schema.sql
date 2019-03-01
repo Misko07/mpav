@@ -13,8 +13,10 @@ CREATE TABLE projects (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
     category TEXT NOT NULL,
-    sdesc TEXT NOT NULL,
-    ldesc TEXT
+    sdesc TEXT,
+    ldesc TEXT,
+    tools TEXT,
+    period TEXT
 );
 
 CREATE TABLE blogs (
