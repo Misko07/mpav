@@ -12,7 +12,7 @@ CREATE TABLE users (
 CREATE TABLE projects (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
-    category TEXT NOT NULL,
+    category TEXT,
     sdesc TEXT,
     ldesc TEXT,
     tools TEXT,

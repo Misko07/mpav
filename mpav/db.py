@@ -116,21 +116,25 @@ def populate_db():
     cur = db.cursor()
     for project in project_list:
         print(project)
+
+        project['tools'] = ",".join([tool for tool in project['tools']])
+
+        vals = [
+            project['title'],
+            project['category'],
+            project['sdesc'],
+            project['ldesc'],
+            project['tools'],
+            project['period']
+        ]
+
         cur.execute(
-            'INSERT INTO projects (title, category)'
-            ' VALUES (?, ?)', (
-                project['title'],
-                project['category']
-            )
-            # 'INSERT INTO projects (title, category, sdesc, ldesc, tools, period)'
-            # ' VALUES (?, ?, ?, ?, ?, ?)', (
-            #     project['title'],
-            #     project['category'],
-            #     project['sdesc'],
-            #     project['ldesc'],
-            #     project['tools'],
-            #     project['period']
-            # )
-        )
-        print(cur.lastrowid)
+            'INSERT INTO projects (title, category, sdesc, ldesc, tools, period)'
+            ' VALUES (?, ?, ?, ?, ?, ?)', vals)
+        db.commit()
+
+        print(cur.rowcount, "record inserted.")
+
+        prs = db.execute('SELECT * FROM projects').fetchall()
+        print(prs[0]['title'])
 

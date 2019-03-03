@@ -13,6 +13,11 @@
         </div>
       </header>
       <p class="body">{{ project['sdesc'] }}</p>
+        <div class="toolsdiv">
+        {% for tool in project['tools'] %}
+            <div class="toolbox">{{ tool }}</div>
+        {% endfor %}
+            </div>
     </article>
     {% if not loop.last %}
       <hr>

@@ -15,19 +15,14 @@ def get_projects():
     db = get_db()
 
     projects = db.execute(
-        'SELECT id, title, sdesc'
-        ' FROM projects'
+        'SELECT * FROM projects'
     ).fetchall()
 
-    # Put projects in a new list which can be modified
-    # todo: Change this once a better way to populate the DB is created
     projects2 = []
     for project in projects:
         project2 = dict(project)
-        sdesc = _get_markup(project2['title'])
-        if sdesc:
-            project2['sdesc'] = sdesc
-        projects2.append(project2)
+        project2['tools'] = list(project2['tools'].split(","))
+        projects2.append(dict(project2))
 
     return render_template('projects.html', projects=projects2)
 

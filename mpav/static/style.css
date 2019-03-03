@@ -25,3 +25,5 @@ nav ul li a, nav ul li span, header .action { display: block; padding: 0.5rem; }
 input.danger { color: #cc2f2e; }
 input[type=submit] { align-self: start; min-width: 10em; }
 .special { max-width: 900px; margin: 0 auto; background-color: whitesmoke; }
+.toolbox {max-width: 180px; background-color: whitesmoke; border: 1px solid #377ba8; float: left; padding: 10px; margin: 5px}
+.toolsdiv {overflow: hidden; width: 1500px;}
