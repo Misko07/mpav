@@ -4,6 +4,7 @@
         "category": "machine learning",
         "period": "2016-17",
         "tools": [
+            "system design",
             "neural nets",
             "python",
             "mongodb",
@@ -27,11 +28,12 @@
         ]
     },
     {
-        "title": "trendmatch recommender design",
+        "title": "trendmatch recommender",
         "category": "machine learning",
         "period": "2018",
         "tools": [
-            "neural nets"
+            "neural nets",
+            "system design"
         ]
     },
     {
@@ -39,6 +41,7 @@
         "category": "machine learning",
         "period": "2017-18",
         "tools": [
+            "system design",
             "recurrent nns",
             "intent recognition",
             "python",
@@ -46,7 +49,7 @@
         ]
     },
     {
-        "title": "nlp1",
+        "title": "nlp-chunks",
         "category": "machine learning",
         "period": "2018",
         "tools": [

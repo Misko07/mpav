@@ -2,14 +2,19 @@
 <title>{% block title %}{% endblock %} - mpav</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <nav>
-  <img class="header-img" height="50" width="50">
-  <h1>mpav</h1>
+    <a href="{{ url_for('blogs.get_blogs') }}">
+  <img id="header-img" src="{{ url_for('static', filename='my_img1.jpg') }}">
+    </a>
+    <h1 id="header-text">mpav</h1>
   <ul>
       <li><a class="action" href="{{ url_for('blogs.get_blogs') }}">Home</a></li>
     <li><a class="action" href="{{ url_for('projects.get_projects') }}">Projects</a></li>
     <li><a class="action" href="{{ url_for('research.get_papers') }}">Research</a></li>
   </ul>
 </nav>
+    <div>
+    <hr id="header-line">
+        </div>
 <section class="content">
   <header>
     {% block header %}{% endblock %}
