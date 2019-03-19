@@ -20,14 +20,14 @@ In this old Learnbet version there was no data pipe to extract transform and loa
 
 As mentioned, the modeling part was basically done from scratch, using this small [NeuralNet](https://github.com/Misko07/NeuralNet). So is the model evaluation. One of the first models I used was predicting a 1 / x / 2 outcome (class) of a match. Then different classes had different accuracy / precision / recall. The following figure shows the distribution of match outcomes and predictions, where predictions around 0 are "home win", 0.5 - "draw", and 1 - "away win". 
 
-[first_one]('static/first_one_hist.png')
+![first_one](../static/first_one_hist.png)
 
 Later on, after being comfortable with using my neural networks, I continued experimenting with models of the `scikit-learn` library, such as: support vector machines (SVMs), logistic regression, decision trees and random forests.
 
 ## Deploying in production
 The first few models were built to work as "console" apps. You pass the names of the two playing teams (and an optional date), and get as output the prediction. Later on, I setup a small Flask app access predictions (and other data) on the web, as in the next figure. The web app was first set on GCP, but later on switched to AWS. 
 
-[odds_web]('static/odds_web.png')
+![odds_web](../static/odds_web.png)
 
 
 ## Reporting, logging, statistics
