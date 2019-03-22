@@ -1,4 +1,4 @@
-from mpav.db import get_db
+from .db import get_db
 
 from flask import (
     g, render_template, request, session, url_for, Blueprint

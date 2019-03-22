@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import render_template
 from . import db
 import os
 
@@ -25,6 +26,19 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    @app.route('/')
+    def index():
+        db_ = db.get_db()
+
+        posts = db_.execute(
+            "SELECT * FROM blogs"
+        ).fetchall()
+
+        print('len(blogs):', len(posts))
+
+        return render_template("index.html", posts=posts)
+
+
     # a simple page that says hello
     @app.route('/hello')
     def hello():
@@ -50,3 +64,4 @@ def create_app(test_config=None):
     app.register_blueprint(research.bp)
 
     return app
+
