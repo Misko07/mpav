@@ -38,13 +38,6 @@ def create_app(test_config=None):
 
         return render_template("index.html", posts=posts)
 
-
-    # a simple page that says hello
-    @app.route('/hello')
-    def hello():
-        db.populate_db()
-        return 'Hi there!'
-
     # Call the db initialisation code
     db.init_app(app)
 
